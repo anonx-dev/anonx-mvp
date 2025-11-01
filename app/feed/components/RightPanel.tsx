@@ -1,3 +1,4 @@
+// app/feed/components/RightPanel.tsx
 'use client';
 
 import React, { useState } from 'react';
@@ -47,7 +48,7 @@ const RightPanel: React.FC = () => {
   };
 
   return (
-    <aside className="hidden lg:flex flex-col w-80 h-screen bg-black border-l border-blue-500/20 sticky top-0 overflow-y-auto">
+    <div className="flex flex-col h-full overflow-y-auto">
       {/* Daily Prompt Section */}
       <div className="p-4 border-b border-white/10">
         <h3 className="text-sm font-semibold text-gray-400 mb-3">📝 Today's Prompt</h3>
@@ -76,7 +77,7 @@ const RightPanel: React.FC = () => {
               className="p-3 rounded-lg border border-white/10 hover:bg-white/5 hover:border-blue-500/30 transition-all duration-300 cursor-pointer group"
             >
               <div className="flex items-center gap-3">
-                <span className="text-xl">{category.icon}</span>
+                <span className="text-2xl">{category.icon}</span>
                 <div className="flex-1 min-w-0">
                   <h4 className="text-white font-semibold text-sm group-hover:text-blue-400 transition-colors">
                     {category.name}
@@ -98,46 +99,24 @@ const RightPanel: React.FC = () => {
           Community Insights
         </h3>
 
-        <div className="space-y-3">
+        <div className="grid grid-cols-2 gap-3">
           <div className="p-3 rounded-lg bg-white/5 border border-white/10">
             <p className="text-gray-400 text-xs mb-1">Total Confessions</p>
             <p className="text-white font-bold text-lg">{formatCount(communityStats.totalConfessions)}</p>
           </div>
-
           <div className="p-3 rounded-lg bg-white/5 border border-white/10">
-            <p className="text-gray-400 text-xs mb-1">Active Confessors</p>
-            <p className="text-white font-bold text-lg">{formatCount(communityStats.activeConfessors)}</p>
-          </div>
-
-          <div className="p-3 rounded-lg bg-white/5 border border-white/10">
-            <p className="text-gray-400 text-xs mb-1">Confessions Today</p>
-            <p className="text-white font-bold text-lg">{communityStats.confessionsToday}</p>
-          </div>
-        </div>
-
-        {/* Top Emotions */}
-        <div className="mt-3 pt-3 border-t border-white/10">
-          <p className="text-gray-400 text-xs mb-2 font-semibold">Top Emotions</p>
-          <div className="space-y-2">
-            {emotions.map((emotion) => (
-              <div key={emotion.label} className="flex items-center justify-between text-xs">
-                <span className="text-gray-400">
-                  {emotion.emoji} {emotion.label}
-                </span>
-                <span className="text-white font-semibold">{formatCount(emotion.count)}</span>
-              </div>
-            ))}
+            <p className="text-gray-400 text-xs mb-1">Active Today</p>
+            <p className="text-white font-bold text-lg">{formatCount(communityStats.confessionsToday)}</p>
           </div>
         </div>
       </div>
 
       {/* Support Resources Section */}
-      <div className="p-4 border-b border-white/10">
+      <div className="p-4">
         <h3 className="text-sm font-semibold text-gray-400 mb-3 flex items-center gap-2">
           <Heart size={16} className="text-red-500" />
           You're Not Alone
         </h3>
-
         <div className="p-4 rounded-lg bg-gradient-to-r from-red-500/10 to-pink-500/10 border border-red-500/20">
           <p className="text-gray-300 text-xs mb-3">
             If you're struggling, we're here to help. Reach out to support services.
@@ -160,26 +139,7 @@ const RightPanel: React.FC = () => {
           </div>
         </div>
       </div>
-
-      {/* Community Guidelines */}
-      <div className="p-4 mt-auto border-t border-white/10">
-        <p className="text-gray-500 text-xs leading-relaxed mb-3">
-          💙 <span className="text-white font-semibold">This is a safe space.</span> Be kind, be honest, and remember—you're not alone in your struggles.
-        </p>
-        <div className="text-gray-500 text-xs space-y-1">
-          <p>
-            <a href="#" className="text-blue-400 hover:text-blue-300">
-              Guidelines
-            </a>
-            {' • '}
-            <a href="#" className="text-blue-400 hover:text-blue-300">
-              Privacy
-            </a>
-          </p>
-          <p>© 2025 AnonX. All rights reserved.</p>
-        </div>
-      </div>
-    </aside>
+    </div>
   );
 };
 

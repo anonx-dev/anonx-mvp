@@ -44,7 +44,7 @@ export const authOptions: NextAuthOptions = {
     },
   },
   pages: {
-    signIn: "/", // Redirect to home
+    signIn: "/sign-in",
   },
   session: {
     strategy: "jwt",

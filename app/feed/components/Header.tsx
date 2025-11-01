@@ -7,12 +7,48 @@ const Header: React.FC = () => {
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [showNotifications, setShowNotifications] = useState(false);
+  const [showMobileSearch, setShowMobileSearch] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 bg-black border-b border-blue-500/20 backdrop-blur-sm">
-      <div className="flex items-center justify-between h-16 px-4 md:px-6">
-        {/* Left: Logo */}
-        <div className="flex items-center gap-2 flex-shrink-0">
+      {/* Mobile Search Bar - Only shows when search icon is clicked */}
+      {showMobileSearch && (
+        <div className="md:hidden p-3 border-b border-white/10">
+          <div className="relative">
+            <div className="flex items-center gap-2 w-full px-4 py-2 rounded-full border border-white/10 bg-white/5">
+              <Search size={18} className="text-gray-400 flex-shrink-0" />
+              <input
+                type="text"
+                placeholder="Search posts, tags..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onFocus={() => setIsSearchFocused(true)}
+                onBlur={() => setIsSearchFocused(false)}
+                className="flex-1 bg-transparent text-white placeholder-gray-500 outline-none text-sm min-w-0"
+                autoFocus
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="text-gray-400 hover:text-white transition-colors flex-shrink-0"
+                >
+                  <X size={16} />
+                </button>
+              )}
+              <button 
+                onClick={() => setShowMobileSearch(false)}
+                className="text-gray-400 hover:text-white transition-colors ml-1"
+              >
+                <X size={20} />
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      <div className="relative flex items-center h-16 px-4 md:px-6">
+        {/* Left: Logo - Hidden when search is active on mobile */}
+        <div className={`flex items-center gap-2 flex-shrink-0 ${showMobileSearch ? 'md:flex hidden' : 'flex'}`}>
           <div className="text-xl md:text-2xl font-black tracking-tighter">
             <span
               style={{
@@ -29,7 +65,7 @@ const Header: React.FC = () => {
         </div>
 
         {/* Center: Search Bar (Desktop only) */}
-        <div className="hidden md:flex flex-1 max-w-md mx-8">
+        <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-full max-w-md">
           <div
             className={`flex items-center gap-3 w-full px-4 py-2 rounded-full border transition-all duration-300 ${
               isSearchFocused
@@ -58,10 +94,13 @@ const Header: React.FC = () => {
           </div>
         </div>
 
-        {/* Right: Icons */}
-        <div className="flex items-center gap-3 md:gap-4 flex-shrink-0">
+        {/* Right: Icons - Hidden when search is active on mobile */}
+        <div className={`flex items-center justify-end gap-4 md:gap-6 flex-shrink-0 ml-auto ${showMobileSearch ? 'hidden md:flex' : 'flex'}`}>
           {/* Mobile Search Icon */}
-          <button className="md:hidden text-gray-400 hover:text-white transition-colors">
+          <button 
+            onClick={() => setShowMobileSearch(true)}
+            className="md:hidden text-gray-400 hover:text-white transition-colors p-2 -mr-1"
+          >
             <Search size={20} />
           </button>
 
@@ -69,11 +108,11 @@ const Header: React.FC = () => {
           <div className="relative">
             <button
               onClick={() => setShowNotifications(!showNotifications)}
-              className="relative text-gray-400 hover:text-white transition-colors group"
+              className="relative text-gray-400 hover:text-white transition-colors p-2 rounded-full hover:bg-white/10"
             >
               <Bell size={20} />
               {/* Notification Badge */}
-              <span className="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full group-hover:scale-125 transition-transform" />
+              <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full group-hover:scale-125 transition-transform" />
             </button>
 
             {/* Notifications Dropdown */}
@@ -106,10 +145,12 @@ const Header: React.FC = () => {
             )}
           </div>
 
-          {/* Profile Avatar */}
-          <button className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 flex items-center justify-center text-white font-bold hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] transition-all hover:scale-110 flex-shrink-0">
-            U
-          </button>
+          {/* Profile Avatar - Hidden on mobile when search is active */}
+          <div className={showMobileSearch ? 'hidden md:block' : ''}>
+            <button className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 flex items-center justify-center text-white font-bold hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] transition-all hover:scale-105 flex-shrink-0 ml-1">
+              U
+            </button>
+          </div>
         </div>
       </div>
     </header>

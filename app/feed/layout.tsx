@@ -22,8 +22,10 @@ const FeedLayout: React.FC<FeedLayoutProps> = ({ children }) => {
 
       {/* Main Content Area */}
       <div className="flex flex-1 overflow-hidden">
-        {/* Desktop Sidebar */}
-        <Sidebar />
+        {/* Desktop Sidebar - Hidden on mobile, visible on lg screens */}
+        <div className="hidden lg:block w-64 flex-shrink-0 border-r border-white/10">
+          <Sidebar />
+        </div>
 
         {/* Center Feed */}
         <main className="flex-1 overflow-y-auto border-x border-white/10 pb-20 md:pb-0">
@@ -32,28 +34,32 @@ const FeedLayout: React.FC<FeedLayoutProps> = ({ children }) => {
           </div>
         </main>
 
-        {/* Desktop Right Panel */}
-        <RightPanel />
+        {/* Desktop Right Panel - Hidden on mobile, visible on lg screens */}
+        <div className="hidden lg:block w-80 flex-shrink-0">
+          <RightPanel />
+        </div>
       </div>
 
       {/* Mobile Drawers */}
       <Drawer
-        isOpen={isLeftDrawerOpen}
-        onClose={() => setIsLeftDrawerOpen(false)}
-        position="left"
-        title="Menu"
-      >
-        <Sidebar />
-      </Drawer>
+  isOpen={isLeftDrawerOpen}
+  onClose={() => setIsLeftDrawerOpen(false)}
+  position="left"
+  title="Menu"
+  className="overflow-y-auto"
+>
+  <Sidebar />
+</Drawer>
 
-      <Drawer
-        isOpen={isRightDrawerOpen}
-        onClose={() => setIsRightDrawerOpen(false)}
-        position="right"
-        title="Trending"
-      >
-        <RightPanel />
-      </Drawer>
+<Drawer
+  isOpen={isRightDrawerOpen}
+  onClose={() => setIsRightDrawerOpen(false)}
+  position="right"
+  title="Trending"
+  className="overflow-y-auto"
+>
+  <RightPanel />
+</Drawer>
 
       {/* Mobile Bottom Bar */}
       <MobileBottomBar

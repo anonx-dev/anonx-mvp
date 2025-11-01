@@ -1,3 +1,4 @@
+// app/feed/components/Sidebar.tsx
 'use client';
 
 import React, { useState } from 'react';
@@ -25,74 +26,67 @@ const Sidebar: React.FC = () => {
       id: 'explore',
       label: 'Explore',
       icon: <Search size={20} />,
-      href: '/feed/explore',
+      href: '/explore',
     },
     {
       id: 'trending',
       label: 'Trending',
       icon: <Flame size={20} />,
-      href: '/feed/trending',
+      href: '/trending',
     },
     {
       id: 'messages',
       label: 'Messages',
       icon: <MessageCircle size={20} />,
-      href: '/feed/messages',
+      href: '/messages',
     },
     {
       id: 'profile',
       label: 'Profile',
       icon: <User size={20} />,
-      href: '/feed/profile',
+      href: '/profile',
     },
     {
       id: 'settings',
       label: 'Settings',
       icon: <Settings size={20} />,
-      href: '/feed/settings',
+      href: '/settings',
     },
   ];
 
   return (
-    <aside className="hidden md:flex flex-col w-64 h-screen bg-black border-r border-blue-500/20 sticky top-0 overflow-y-auto">
-      {/* Sidebar Content */}
-      <div className="flex-1 p-4 space-y-2">
-        {/* Navigation Items */}
-        {navItems.map((item) => (
-          <Link key={item.id} href={item.href}>
-            <button
-              onClick={() => setActiveNav(item.id)}
-              className={`w-full flex items-center gap-4 px-4 py-3 rounded-lg transition-all duration-300 group ${
+    <div className="flex flex-col h-full">
+      {/* Navigation Items */}
+      <nav className="flex-1 overflow-y-auto">
+        <div className="p-2 space-y-1">
+          {navItems.map((item) => (
+            <Link
+              key={item.id}
+              href={item.href}
+              className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
                 activeNav === item.id
-                  ? 'bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 border border-blue-500/30 text-white'
-                  : 'text-gray-400 hover:text-white hover:bg-white/5'
+                  ? 'bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 text-white'
+                  : 'text-gray-400 hover:bg-white/5 hover:text-white'
               }`}
+              onClick={() => setActiveNav(item.id)}
             >
-              <span
-                className={`transition-all ${
-                  activeNav === item.id
-                    ? 'text-blue-400 scale-110'
-                    : 'group-hover:scale-110'
-                }`}
-              >
+              <span className={activeNav === item.id ? 'text-blue-400' : ''}>
                 {item.icon}
               </span>
-              <span className="text-base font-medium">{item.label}</span>
-            </button>
-          </Link>
-        ))}
-      </div>
+              <span className="text-sm font-medium">{item.label}</span>
+            </Link>
+          ))}
+        </div>
+      </nav>
 
-      {/* Logout Button */}
+      {/* Bottom Section - Logout */}
       <div className="p-4 border-t border-white/10">
-        <button className="w-full flex items-center gap-4 px-4 py-3 rounded-lg text-gray-400 hover:text-red-400 hover:bg-red-500/10 transition-all duration-300 group">
-          <span className="group-hover:scale-110 transition-transform">
-            <LogOut size={20} />
-          </span>
-          <span className="text-base font-medium">Logout</span>
+        <button className="w-full flex items-center gap-3 px-4 py-3 text-red-400 hover:bg-red-500/10 rounded-lg transition-colors">
+          <LogOut size={20} />
+          <span className="text-sm font-medium">Logout</span>
         </button>
       </div>
-    </aside>
+    </div>
   );
 };
 
