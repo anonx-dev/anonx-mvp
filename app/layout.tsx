@@ -3,8 +3,15 @@ import Script from "next/script";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Edvance | Your Branded Learning App",
-  description: "Launch your fully branded mobile app without code. Auto-process payments, stop piracy, and scale.",
+  title: "Anonx | Branded Learning Apps for Educators",
+  description: "Anonx creates affordable branded learning apps for educators. Launch your own mobile app without code. Perfect for academies, tutoring centers, and online courses.",
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+    shortcut: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({

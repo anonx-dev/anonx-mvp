@@ -65,19 +65,19 @@ export default function Hero() {
             {/* Badge */}
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-orange-50 border border-orange-200 text-brand-orange text-xs font-bold mb-6">
               <span className="inline-flex rounded-full h-1.5 w-1.5 bg-brand-orange"></span>
-              Built for Indian Educators
+              Sell Courses, Keep Control
             </div>
 
             {/* Headline matching from screenshot */}
             <h1 className="font-cabinet text-4xl sm:text-5xl lg:text-[56px] leading-[1.08] font-extrabold text-navy-950 tracking-tight mb-5">
               Get Your Own<br />
-              <span className="text-brand-orange">Learning App</span><br />
-              to Sell Courses.
+              <span className="text-brand-orange">Course Platform</span><br />
+              at Unbeatable Prices.
             </h1>
 
             {/* Sub-text matching screenshot */}
             <p className="text-base text-navy-600 mb-8 max-w-sm font-medium leading-relaxed">
-              Launch a fully branded mobile app without coding. Manage students, deliver secure videos, and process payments—all in one practical platform.
+              Launch your own course platform without coding. Manage students, deliver secure content, process payments—all in one place at prices competitors can't match.
             </p>
 
             {/* CTAs */}

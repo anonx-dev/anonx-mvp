@@ -1,6 +1,11 @@
 import Icon from "@/components/ui/Icon";
 
 export default function Contact() {
+  const whatsappNumber = "916202784603";
+  const whatsappMessage = encodeURIComponent(
+    "Hi Anonx, I want to know more about your course platform. Please share details."
+  );
+
   return (
     <section className="relative py-16 bg-white" id="contact">
       <div className="max-w-2xl mx-auto px-6 sm:px-8 lg:px-16">
@@ -20,7 +25,9 @@ export default function Contact() {
           </p>
 
           <a
-            href="https://wa.me/"
+            href={`https://wa.me/${whatsappNumber}?text=${whatsappMessage}`}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2.5 bg-[#25D366] text-white px-8 py-3.5 rounded-full font-bold text-sm hover:bg-[#1ebe5d] transition-colors shadow-sm mb-4"
             id="cta-whatsapp"
           >

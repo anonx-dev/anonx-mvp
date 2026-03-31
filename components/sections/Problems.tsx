@@ -8,14 +8,10 @@ export default function Problems() {
         {/* Centered Header */}
         <div className="text-center mb-14">
           <h2 className="font-cabinet text-3xl md:text-4xl font-extrabold text-navy-950 mb-4">
-            The Challenges You Face Today
+            Problems Selling Courses Today
           </h2>
           <p className="text-base text-navy-500 font-medium max-w-lg mx-auto leading-relaxed">
-            Selling courses{" "}
-            <span className="text-brand-orange font-semibold">through basic tools</span>{" "}
-            limits your growth and{" "}
-            <span className="text-brand-orange font-semibold">hurts</span>{" "}
-            your professional image.
+            Current solutions are expensive, complicated, or steal your margins. <span className="text-brand-orange font-semibold">Anonx is different</span>—affordable, professional, and built for course creators who want full control.
           </p>
         </div>
 
